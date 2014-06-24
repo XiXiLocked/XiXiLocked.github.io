@@ -1,8 +1,7 @@
 ---
-  layout: default
+  layout: minimal
   title: Pages搭站repo
----
-  <p>{{ page.date | date_to_string }}</p>
+---  
   <p>搞了半天总算弄好了。基本上大部分的功夫都是被记事本.exe给磨掉的。</p>
   <p>先是按教程抄了，里面有一坨看不见的乱码，传了好多遍都说build pages failure，最后发现编码还是什么的不对劲。</p>
   <p>然后是页面不照着想要的样子解析，改了半天以为是编码不对结果是UTF-8带了BOM,怎么不出来锟斤拷啊...</p>
@@ -10,6 +9,4 @@
   <p>最后和路径搏斗了好久,baseurl啊site.url啊实际的路径啊url里放中文会乱码链不起来啊...结果放弃了就成现在这个样子了。</p>
   <p>顺便一说网上的教程好像大多是Project Pages的样子，都是附在一个项目仓库里的，代码是在gh-pages的分支里。这个可以自动生成啊，在repository的setting里有。</p>
   <p>另外一种是User Pages，是要在[username].github.io这个仓库的master分支里放东西的。这个也可以自动生成的样子，方法和上面差不多但是还是要手动加点东西才能用的方便,所以网上的教程也需要看一下的啦。</p>
-
-  
   
