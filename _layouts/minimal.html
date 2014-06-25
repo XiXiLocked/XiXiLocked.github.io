@@ -24,12 +24,19 @@
       </header>
       <section>
 	   <h2>{{ page.title }}</h2>
+	    <h5>{{ page.date | date: "%-d %B %Y" }}<h5>
 	    {{content}}
-	   <h5>{{ page.date | date: "%-d %B %Y" }}<h5>
-	  </section>
-      <footer>
+{% if page.comment %}
+	  <p>uuu</p>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1942828"></script>
+<!-- UY END -->
+{% endif %}
+       </section>
+       <footer>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
     
