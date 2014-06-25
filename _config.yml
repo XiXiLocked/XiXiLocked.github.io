@@ -2,3 +2,4 @@ encoding: UTF-8
 lsi: false
 source: .
 baseurl: ''
+markdown: kramdown
