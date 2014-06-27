@@ -63,7 +63,7 @@
 <br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/>
-<p>跟了一下wiki，证明的概要大概是这样的(环啊什么的术语不要熟的不要太在意，代数也是一个环，当成集合就可以了):<br/>他其实就证了<a href="/wiki/Hilbert%27s_basis_theorem" title="http://en.wikipedia.org/wiki/Hilbert's_basis_theorem">Hilbert's basis theorem</a>，定理提到了<a href="http://en.wikipedia.org/wiki/Noetherian_ring" title="Noetherian ring">Noetherian ring</a>，这个Noetherian ring有一个等价定义说Noetherian ring是有一个有限基的ring。<br/>
+<p>要证明的是:多项式环的不变量环有一组有限基。跟了一下wiki，证明的概要大概是这样的(代数也是一个环，环啊理想啊什么的术语不要熟的不要太在意，脑补成集合就可以了):<br/>他其实就证了<a href="/wiki/Hilbert%27s_basis_theorem" title="http://en.wikipedia.org/wiki/Hilbert's_basis_theorem">Hilbert's basis theorem</a>，定理提到了<a href="http://en.wikipedia.org/wiki/Noetherian_ring" title="Noetherian ring">Noetherian ring</a>，这个Noetherian ring有一个等价定义说Noetherian ring是有一个有限基的ring。<br/>
 补充一个背景知识，n+1个变量的多项式可以看做是n个变量的多项式为系数的第n+1个变量的多项式，比如$a x^{2} +2 b x y+c y^{2} =( a x^{2} ) 1+ ( 2 b x ) y+ ( c ) y^{2}$.
-<br/>这样几件事就能连起来了，定理应用在这里就相当于一个数学归纳法的第二步，说如果系数有一个有限基(是Noetherian ring)，那么那个系数形成的多项式也有一个有限基(是Noetherian ring)。再补上显然的归纳基础:复数是有有限基的(任何非0的数都能做基)，就证明了复系数n元r次齐次多项式是有有限基的，咦，这个结果好平凡啊！！！摔！！！</p>
-<p>差在哪里！差在复系数n元r次齐次多项式环到他的不变量环那里，我觉得定理应该是用在不变量环上的，需要给上面的背景知识加点料，然后归纳步骤就变成系数的不变量环有有限基$\rightarrow$多项式环的不变量环有有限基，可惜果然是行外人缺背景知识只能摊手...</p>
+<br/>这样几件事就能连起来了，定理应用在这里就相当于一个数学归纳法的第二步，说如果系数有一个有限基(是Noetherian ring)，那么那个系数形成的多项式也有一个有限基(是Noetherian ring)。再补上显然的归纳基础:复数是有有限基的(任何非0的数都能做基)，就证明了复系数n元多项式是有有限基的，咦，这个结果好平凡啊！！！摔！！！</p>
+<p>差在哪里！差在复系数n元多项式环到他的不变量环那里，<strike>我觉得定理应该是用在不变量环上的，需要给上面的背景知识加点料，然后归纳步骤就变成系数的不变量环有有限基$\rightarrow$多项式环的不变量环有有限基，可惜果然是行外人缺背景知识只能摊手...</strike>又看了看wiki，发现联系不变量要取多项式的齐次不变量生成的理想(不放进常数，否则有1就成整个环了，还有名字好长)，这样绕一圈从环是有限生成的推到理想是有限生成的，再到理想是有限个不变量生成的，所以再验证一下理想的性质(wiki里证明的大部分都在做这件事= =)，就得到不变量有限基的存在性。</p>
