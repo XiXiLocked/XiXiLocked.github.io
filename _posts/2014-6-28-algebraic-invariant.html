@@ -1,0 +1,69 @@
+---
+  layout: minimal
+  title: 摸了一下经典不变量理论
+---
+<p>今天TL有人说起了戈尔丹问题，然后就绕到了这个话题。</p>
+<p>这个理论说是有一个多项式，齐次多项式$P ( x_{1} ,x_{2} , \ldots ,x_{n} )$！(比如这个样子$a x^{2} +2 b x y+c y^{2}$)，然后给变量$x_{1} ,x_{2} , \ldots ,x_{n}$一个线性变换$T$，(比如这个样子$\left(\begin{array}{c}
+  x\\
+  y
+\end{array}\right) = \left(\begin{array}{cc}
+  m & n\\
+  p & q
+\end{array}\right)   \left(\begin{array}{c}
+  u\\
+  v
+\end{array}\right)$)，就会得到另一个齐次多项式$P ( T ( x_{1} ,x_{2} , \ldots ,x_{n} ) )$。(比如这个样子$d u^{2} +2 e u v+f v^{2}$,具体形式看下面)。</p>
+<p>铺垫完了，问题是这个:$P ( x_{1} ,x_{2} , \ldots ,x_{n} )$和$P ( T ( x_{1} ,x_{2} , \ldots ,x_{n} ) )$有什么关系？</p>
+<p>经典不变量理论要找的当然是不变量，是齐次多项式系数组成的量/多项式(比如不带系数的常数，这个是平凡的不提，比如$b^{2} -a c$，是从<a href="http://en.wikipedia.org/wiki/Invariants_of_binary_forms#Covariants_of_a_binary_quadric">这里</a>找到的)，有时候还要找带了变量的(这种$x,y$)</p>
+<p>我用mathematica算了一下上面的比如的例子，结果是这样<img src="/img/invariantExample.jpg"/>
+</p>
+<p>脑子快一点的会发现$m q-n p= \det \left(\begin{array}{cc}
+  m & n\\
+  p & q
+\end{array}\right)$，所以只要线性变换$T$限制在$\det  T= \pm 1$(实际理论还限制在$\det  T= 1$),$b^{2} -a c$就是一个不变量(注一下，换一下记号$a x^{2} +b x y+c y^{2}$的时候不变量是$b^{2} -4 a c$，熟吧)(再注一下，再换一下记号$$a x^{2} +2 b x y+c y^{2} = \left(\begin{array}{cc}
+  x & y
+\end{array}\right) \left(\begin{array}{cc}
+  a & b\\
+  b & c
+\end{array}\right) \left(\begin{array}{c}
+  x\\
+  y
+\end{array}\right)
+\\
+= \left(\begin{array}{cc}
+  u & v
+\end{array}\right) \left(\begin{array}{cc}
+  m & p\\
+  n & q
+\end{array}\right) \left(\begin{array}{cc}
+  a & b\\
+  b & c
+\end{array}\right) \left(\begin{array}{cc}
+  m & n\\
+  p & q
+\end{array}\right)   \left(\begin{array}{c}
+  u\\
+  v
+\end{array}\right)
+\\
+= \left(\begin{array}{cc}
+  u & v
+\end{array}\right) \left(\begin{array}{cc}
+  d & e\\
+  e & f
+\end{array}\right)   \left(\begin{array}{c}
+  u\\
+  v
+\end{array}\right) =d u^{2} +2 e u v+f v^{2}$$这个不变量通过行列式的性质就能看出来)。</p>
+<p>然后呢，找到了$b^{2} -a c$这个不变量，那么$k ( b^{2} -a c ) , ( b^{2} -a c )^{n} , ( b^{2} -a c ) + ( b^{2} -a c )^{2}$连带更多的一堆(形成一个结构叫代数= =$b^{2} -a c$就是这个代数结构里的基)都是不变量。</p>
+<p>经典不变量理论好像就在构造各种具体情况下的这种基，条目下面写了好多，然后Hilbert十分反传统地给了这种基的存在性证明而不是构造，据说把戈尔丹噎住了，开辟了一个新的领域。</p>
+<p>下面卖蠢别看</p>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<p>跟了一下wiki，证明的概要大概是这样的(环啊什么的术语不要熟的不要太在意，代数也是一个环，当成集合就可以了):<br/>他其实就证了<a href="/wiki/Hilbert%27s_basis_theorem" title="http://en.wikipedia.org/wiki/Hilbert's_basis_theorem">Hilbert's basis theorem</a>，定理提到了<a href="http://en.wikipedia.org/wiki/Noetherian_ring" title="Noetherian ring">Noetherian ring</a>，这个Noetherian ring有一个等价定义说Noetherian ring是有一个有限基的ring。<br/>
+补充一个背景知识，n+1个变量的多项式可以看做是n个变量的多项式为系数的第n+1个变量的多项式，比如$a x^{2} +2 b x y+c y^{2} =( a x^{2} ) 1+ ( 2 b x ) y+ ( c ) y^{2}$.
+<br/>这样几件事就能连起来了，定理应用在这里就相当于一个数学归纳法的第二步，说如果系数有一个有限基(是Noetherian ring)，那么那个系数形成的多项式也有一个有限基(是Noetherian ring)。再补上显然的归纳基础:复数是有有限基的(任何非0的数都能做基)，就证明了复系数n元r次齐次多项式是有有限基的，咦，这个结果好平凡啊！！！摔！！！</p>
+<p>差在哪里！差在复系数n元r次齐次多项式环到他的不变量环那里，我觉得定理应该是用在不变量环上的，需要给上面的背景知识加点料，然后归纳步骤就变成系数的不变量环有有限基$\rightarrow$多项式环的不变量环有有限基，可惜果然是行外人缺背景知识只能摊手...</p>
