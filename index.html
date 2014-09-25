@@ -4,11 +4,16 @@
   <p>最新文章</p>
 
     <ul>
-
-        {% for post in site.posts %} 
-
-        <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-
-        {% endfor %}
-
+{% for post in site.posts %}
+  <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
     </ul>
+<hr />
+  <p>未解决的问题</p>
+<ol>
+{% for post in site.posts %} 
+{% if post.unsolved %}
+        <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+{% endif %}
+{% endfor %}
+</ol>
