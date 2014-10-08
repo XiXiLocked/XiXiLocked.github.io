@@ -3,7 +3,6 @@
   title: gtm101 习题1_6
   comment: true
   tag: gtm101
-  unsolved: true
 ---
 <p>
 <img src="/img/gtm101/ex1_6.png" > <br />
@@ -19,5 +18,8 @@
 
 21题，看图,不清晰<br />
 <img src="/img/gtm101/sl1_6_1.jpg" > <br />
-22题，对称多项式$S$可以被表示成$F_1$和$F_2$，于是$F=F_1-F_2=0$，所以只要证明题上的命题就证明了唯一性，证明不来。
+22题，对称多项式$S$可以被表示成$F_1$和$F_2$，于是$F=F_1-F_2=0$，所以只要证明题上的命题就证明了唯一性。<br />
+要点就是字典序，$$F ( \sigma_1, \sigma_2, \ldots, \sigma_n) = \sum_{j = 0}^m g_j ( \sigma_1,
+\sigma_2, \ldots, \sigma_{n - 1}) \sigma_n^j$$，要这个东西恒$=0$必须那些系数$g_j ( \sigma_1,
+\sigma_2, \ldots, \sigma_{n - 1})=0$，然后递归下去，最后得出每个单项式的系数都得是$0$。
 </p>
