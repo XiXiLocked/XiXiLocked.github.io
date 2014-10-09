@@ -1,0 +1,25 @@
+---
+  layout: minimal
+  title: gtm101 习题1_8
+  comment: true
+  tag: gtm101
+  unsolved: true
+---
+<p>
+<img src="/img/gtm101/ex1_8.png" > <br />
+差不多也该完结第一章了。<br />
+26题，首先，$f'(x)=(x-r_1)(x-r_2)+(x-r_2)(x-r_3)+(x-r_1)(x-r_3)$，让$g=f'$，于是resultant就是$$f'(r_1) f'(r_2) f'(r_3)=(r_1-r_2)(r_1-r_3)(r_2-r_1)(r_2-r_3)(r_3-r_1)(r_3-r_2)=(-1)^3(r_1-r_2)^2 (r_1-r_3)^2 (r_2-r_3)^2$$<br />
+
+27题，$$log((1+r_1)(1+r_2) \ldots (1+r_n))=log(1+r_1)+log(1+r_2)+ \cdots +log(1+r_n)$$  
+$$=s_1-\frac{s_2}{2}+\frac{s_3}{3}+ \cdots + (-1)^n \frac{s_n}{n}+ \cdots $$
+$$log((1+r_1)(1+r_2) \ldots (1+r_n))=log(1+(\sigma_1+\sigma_2+\cdots+\sigma_n))$$  
+$$=(\sigma_1+\sigma_2+\cdots+\sigma_n)-\frac{(\sigma_1+\sigma_2+\cdots+\sigma_n)^2}{2}+\frac{(\sigma_1+\sigma_2+\cdots+\sigma_n)^3}{3}+ \cdots + (-1)^n \frac{(\sigma_1+\sigma_2+\cdots+\sigma_n)^n}{n}+ \cdots $$<br />
+于是$$s_1-\frac{s_2}{2}+\frac{s_3}{3}+ \cdots + (-1)^n \frac{s_n}{n}+ \cdots =(\sigma_1+\sigma_2+\cdots+\sigma_n)-\frac{(\sigma_1+\sigma_2+\cdots+\sigma_n)^2}{2}+\frac{(\sigma_1+\sigma_2+\cdots+\sigma_n)^3}{3}+ \cdots + (-1)^n \frac{(\sigma_1+\sigma_2+\cdots+\sigma_n)^n}{n}+ \cdots $$<br />
+$s_1$里有的是$r_1,r_2,\ldots,r_n$的1次项，右边的$\sigma_1$也是，所以他们相等。<br />
+$-\frac{s_2}{2}$里是2次项，右边是$r_1,r_2,\ldots,r_n$的2次项的有(包括可能的交叉项):$\sigma_2,-\frac{\sigma_1^2}{2}$,所以这两组相等。<br />
+3次项，左边$\frac{s_3}{3}$，右边$\sigma_3,-\frac{2 \sigma_1 \sigma_2}{2},\frac{\sigma_1^3}{3}$<br />
+以此类推。。。<br />
+28题，好难凑。。。<br />
+29题，我再去看看多项式整除理论。。。<br />
+30题，想用克拉末法则可是最后一步要除法啊....环不一定能做除法啊。。。<br />
+</p>
