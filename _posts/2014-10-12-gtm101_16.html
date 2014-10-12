@@ -1,0 +1,25 @@
+---
+  layout: minimal
+  title: gtm101 习题2_2
+  comment: true
+  tag: gtm101
+  unsolved: true
+---
+<p>
+<img src="/img/gtm101/ex2_2.png" > <br />
+第4题，24个置换，24个根。。。要认出$x+ i y-z -i r$可以$x \rightarrow y \rightarrow z \rightarrow x$出4个根，而且每个都可以通过乘以$i$得到。然后枚举出剩下5个，他们互相不能通过$x \rightarrow y \rightarrow z \rightarrow x$得到。于是就有
+$$t_1=x +i y - z - i r$$
+$$t_2=x +i y - r - i z$$
+$$t_3=x +i z - y - i r$$
+$$t_4=x +i z - r - i y$$
+$$t_5=x +i r - z - i y$$
+$$t_6=x +i r - y - i z$$
+随便举的，不惟一。<br />
+于是$$((X-t_1)(X- i^2 t_1)(X- i t_1)(X- i^3 t_1))(X-t_2) \cdots (X- i^3 t_6)= (X^4 - t_1^4) \cdots (X^4 - t_6^4)$$<br />
+意识到一件事$t_1 = \bar{t_5}$, $t_2 = \bar{t4}$, $t_3= \bar{t_6}$,所以不管$t=t_1,/ldots,t_6$的哪个，$\pi$只有3个，记成$\pi_1,\pi_2,\pi_3$。<br />
+构造$$(Y-\pi_1)(Y-\pi_2)(Y-\pi_3)$$，这个式子的系数都是可以算出来的。。。<br />
+
+5题，cas展开然后手动归类也嫌烦了，直接用cas做辗转相减，结果只有3项，说明只要做3次哦很快的ww $$\sigma_1^3-4 \sigma_1 \sigma_2 +8 \sigma_3$$<br />
+
+6题，随便算一个，其他的应该都类似。$$t_1 = t_2 \Rightarrow t_1-t_2=0 \Rightarrow -2 y+2 z=0  \Rightarrow y=z$$<br />
+</p>
