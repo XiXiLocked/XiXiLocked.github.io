@@ -1,0 +1,66 @@
+---
+  layout: minimal
+  title: 安装scrapy
+  comment: true
+---
+<p>
+想搞搞看爬虫，顺手想装个scrapy，结果弄了大半天，所以不得不记录一下，免得下次再忙活。<br />
+先是版本，scrapy只支持<b>python2.7</b>，2.6也不行，3.x也不行。<br/ >
+所以要
+<pre class="prettyprint">
+#mkdir newdir
+#cd newdir
+#virtualenv v_env --python=python2.7
+</pre><br />
+然后pip的时候好多都是要编译的，经常缺头文件，
+<pre class="prettyprint">
+# command 'x86_64-linux-gnu-gcc' failed with exit status 1
+</pre><br />
+我碰到的不管有用没用的就这些：<br />
+<pre class="prettyprint">
+#sudo apt-get install python-dev
+#sudo apt-get install libevent-dev
+#sudo apt-get install libffi-dev
+#sudo apt-get install libssl-dev
+#sudo apt-get install libxslt-dev
+#sudo apt-get install libxml2-dev 
+#sudo apt-get install python3-dev
+</pre><br />
+还有一些python环境要的，不管有用没用也这些：<br />
+<pre class="prettyprint">
+#sudo pip install --upgrade setuptools
+#sudo apt-get install openssl
+#sudo apt-get install libxml2
+#sudo apt-get install libxslt1.1
+#sudo apt-get install python-libxml2
+#sudo apt-get install python-libxslt1
+#sudo apt-get install python-setuptools
+</pre><br />
+这两句要执行一下（这两句肯定！），
+<pre class="prettyprint">
+#source v_env/bin/activate
+#pip install monkeypatch --pre
+</pre><br />
+一是激活环境。第二个是我机器上必缺的东西，
+<pre class="prettyprint">
+#"scrapy ImportError: No module named '_monkeypatches'"
+</pre><br />
+装的时候不加--pre 会跳下面的错：
+<pre class="prettyprint">
+#"Could not find a version that satisfies the requirement monkeypatch (from versions: 0.1rc1, 0.1rc2, 0.1rc3)"
+</pre><br />
+
+最后一些，其实也不一定要装，等下装的时候可能depedency里自动会装的<br />
+<pre class="prettyprint">
+#pip install cryptography
+#pip install lxml
+#pip install easy_install
+#pip install monkeypatch --pre
+</pre><br />
+最后是<br />
+<pre class="prettyprint">
+#pip install scrapy
+</pre><br />
+总结一下就是不动脑子在乱试，结果花了好多事件啧。
+
+</p>
