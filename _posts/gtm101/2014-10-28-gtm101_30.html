@@ -1,0 +1,12 @@
+---
+  layout: minimal
+  title: gtm101 chap4.5 Galois预解式的存在性
+  comment: true
+  tag: gtm101
+---
+<p>
+就豆腐干那么一块看起来好快啊，是之后的理论基础，说存在Galois预解式。简而言之，无重根蕴含预解式存在。<br />
+只要找到一组$A,B,\ldots$，让$$A S ( a) + B S ( b) + \cdots$$在不同的置换$S$下都不同。显然的做法就是所有的配对做差(除了自己和自己)，$$\mathfrak{D}= \prod_{S, T} [ A ( S ( a) - T ( a)) + B ( S ( b) - ( b)) +\cdots]^2$$不为$0$。<br />
+看似麻烦了，但是有个好处，$\mathfrak{D}$是$a,b,\ldots$的对称多项式，所以$a,b,\ldots$消掉，变成了系数。$\mathfrak{D}$变成了$A,B,\ldots$的多项式，$\neq 0$，必然有一组使得他不等于$0$。要这组解满足整数的条件，还要一点功夫，不过不用加假设了。<br />
+<img src="/img/gtm101/p36.png" >
+</p>
