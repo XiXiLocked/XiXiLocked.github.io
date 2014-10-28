@@ -1,0 +1,68 @@
+---
+  layout: minimal
+  title: 一些和http请求有关无关的
+  comment: true
+---
+<p>
+之前说爬虫啥的，然后想看看http请求是什么样子的。资料找到一半想起以前还想做自动签到，就这么搞下去了。<br />
+用python3的socket做，无聊到我也不会用c的socket，那个又要看一本书的样子。<br />
+至今只试了几下GET方法。代码大概是这样
+
+<pre class="prettyprint">
+import socket,sys
+#构造socket，AF_INET是ipv4，SOCK_STREAM是tcp
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("www.baidu.com",80))
+#这句就是请求了，有点格式之后讲
+s.send(b'GET / HTTP/1.1\r\nHost: www.baidu.com\r\n\r\n')
+
+try:
+#只试了下能不能连通，没有循环拿到所有的内容
+ buffer = s.recv(2048)
+ print(buffer)
+except socket.error as e:
+#意思意思抓异常，实际上试的过程中没进过这里
+ print( "exception %r "%e)
+ sys.exit(1)
+
+</pre>
+
+这是<a href="http://pretty-rfc.herokuapp.com/RFC2616"> HTTP/1.1 的一个rfc</a>，稍微看了几眼，太长了，而且已经废弃了（换成了更长的6个。<br />
+短的可以看<a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">wiki</a>。<br />
+都是这里看来的，复述一下要点：
+<ul>
+<li>http请求和回复都是一条条域组成的，每条域就是一行。</li>
+<li>用"\r\n"换行，表示一个域的结束。</li>
+<li>不能乱加空格，有的服务器不认（之前用"http/1.1 \r\n"，结果百度就没反应）</li>
+</ul>
+关于request
+<ul>
+<li>请求行。</li>
+<li>请求头的各种域。</li>
+<li>http/1.1必须带Host域，相对路径绝对路径都得加。</li>
+<li>空行，没有空格</li>
+<li>可选的消息体(message body)</li>
+</ul>
+
+关于response
+<ul>
+<li>状态行。</li>
+<li>回复头的各种域。</li>
+<li>空行，没有空格</li>
+<li>可选的消息体(message body)</li>
+</ul>
+消息头用一个空行结束，有点在意消息体是怎么结束的，好像是Content-Length这个域给定的。但是如果不需要消息体的消息会忽略，不匹配的好像也会忽略，还和transfer-coding什么的域有关。具体怎么算长度，那要看具体的标准了，不理。
+</p>
+
+<p>
+用tcpdump抓了一下tcp的包，为了下次弄弄看自动签到。
+<pre class="prettyprint">
+#sudo tcpdump -w FileToWrite -i wlan0 dst www.example.com and port 80
+</pre>
+w选项是写文件，i选项是监视的设备，wlan0是无线的（eth0是有线？可能的设备可以从ifconfig里看到）<br />
+然后是监视的条件,dst是监视发到www.example.com的包，也可以用ip。and是条件并列，port 80是另外一个条件。还有or，还有括号，要escape ，用\(和\)。<br />
+用这个看各种请求的格式也挺好用的，凡客20 推荐的w。<br />
+</p>
+<p>
+还有一个问题是，要看一点cookies，因为http是无状态协议啊什么的搞的。
+</p>
