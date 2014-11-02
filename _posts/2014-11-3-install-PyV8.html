@@ -1,0 +1,56 @@
+---
+  layout: minimal
+  title: 装了PyV8
+  comment: true
+---
+<p>
+就昨天说装pyv8，然后搞了一天总算弄出来了。<br />
+其实要说要怪就怪哪个项目没有编译好的binary用，不过<a href="https://github.com/emmetio/pyv8-binaries" >这里</a>有哦（编译成功前一会会才发现，然后很气愤别人行我就不行？？然后我也做到了嘻嘻）
+</p>
+<p>
+问题一：安装PyV8的时候各种编译错误<br />
+这个的情况，我是因为pyv8和v8版本不匹配，大概只有google家的代码有，因为墙了不好下，然后你没代理就乱下了一通源码。<br />
+解决办法，首先，要有一个代理，http，https代理最好，svn有原生的代理设置，在~/.subversion/servers这个文件里照葫芦画瓢一下设置就行。<br />
+我只有socks5的，于是找过privoxy，用不来。。。但是神器出现proxychains！在~/.proxychains/proxychains.conf里改设置
+<pre>
+dynamic_chain
+chain_len = 1
+tcp_read_time_out 15000
+tcp_connect_time_out 10000
+[ProxyList]
+socks5  127.0.0.1   8080 #你的socks5地址
+</pre>
+上面是抄来的，还能插socks4和socks4a貌似。用法也很简单，在命令前面套上proxychains就行。<br />
+然后正儿八经地用svn下PyV8的源码，地址在googlecode上。其实就够了，v8不用下，因为V8那边更新太快了，pyv8跟不上那边的人的速度，所以安装的时候会要求特定版本。如果你失败了可以记下来-r后面的数字不用反复下。
+<pre>
+svn co http://v8.googlecode.com/svn/trunk/ v8 -r 19632
+</pre>
+</p>
+<p>
+问题二：V8_HOME的设置错误<br />
+做法：这个基本是最要紧的一个配置了，在pyv8的目录里有 buildconf.py.example类似的名字，改名成buildconf.py，在里面的V8_HOME变量里写上v8的目录。<br />
+其他变量默认也行，甚至V8_HOME也可以空着，但是就会上网下v8的文件，一次还好，2次3次就不爽了。<br />
+错误做法：设置环境变量V8_HOME。这个也行，除了最后往别的目录写东西的时候会Permission denied然后欲哭无泪(如果你没sudo的话)。就因为最后需要权限，所以必须sudo，但是每个用户的环境变量貌似是分开的，除非你在sudo bash在那里做，但是这是禁手能不用就不用的。所以还是改配置文件最稳妥。
+</p>
+<p>
+问题三：显示running build之后一动不动？<br />
+解答：我猜是日志输出没刷缓冲区。。。其实是在动的好像是在联网下东西，但是缓冲没满你懂的。之后出信息的时候声音可大了！我只有4核，但是top一看1分钟的load average竟然能到10.7！
+</p>
+
+<p>
+问题四：各种Error<br />
+还是缺东西咯，尤其那个编译的时候还挺久的，到最后才给你说不行，然后他自顾自的clean了，下次还要重新来挺郁闷的。<br />
+解决办法：没啥办法，日志说缺啥就下啥咯。记得要下libboost-system-dev和libboost-thread-dev，应该是这两个，最后链接的时候跟我说不行啊orz。。。。在后面要build成功的东西写进/usr那里的时候还跟说我没权限。。。。或者你可以上网看看大家缺什么你先装？
+</p>
+
+<p>
+其实如果没问题的话也就1句话。假设你把pyv8下好了，跑到目录里
+<pre >
+sudo pip install .
+</pre>
+等等就好了。
+</p>
+
+<p>
+明天开始搞爬虫....去拖招聘网站的信息下来，好像是哪个网站很恶心信息载入是用js做的，哼哼你
+</p>
