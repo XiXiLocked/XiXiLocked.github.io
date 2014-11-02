@@ -1,0 +1,56 @@
+---
+  layout: minimal
+  title: 做了一个虾米签到
+  comment: true
+---
+<p>
+以前别人做的虾米签到不能用了，所以照这么推，这篇里的内容也可能在以后失效。<br />
+有人说虾米手机端签到比较简单，大家可以去试试，我是钻牛角尖一定要在网页端签到的哼哼！！<br />
+成果在github的<a href="https://github.com/XiXiLocked/xiami">仓库里面</a>，python3写的，2.7没试过。<br />
+</p>
+<p>
+第一次搞这种所以没有经验，走了好多弯路。<br />
+第零是抓包，为什么是第零，因为这是后来补的，不想动序号了。然后因为每天能签到的次数有限，所以每次都要很小心，不能抓漏了也要有效率地来，算了一下大概这几天一共抓了3，4个？<br />
+第一是post帐号密码，有坑。。。。整个提交form里面有看不到的type="hidden"的输入框，没发现的话就登录失败。比如
+<pre>
+< input type="hidden" value="http%3A%2F%2Fwww.xiami.com" name="done">
+</pre>
+而且有一个每次都是变的你得跟着来，所以登录要get一次，再post一次。
+<br />
+第二是签到按钮，是js写的，没学过，痛苦的看了半天代码，还好发现了。（还是抓包抓到的？印象不深了）<br />
+第三是各种cookie，因为是用的python的Request发的，本以为不会缺cookie，然后照着抓到的包的格式发了好几遍都不成功，才开始怀疑cookies不够。<br />
+这里是个巨坑，有好多组，大多是统计信息，CNZZDATA是一个cnzz的统计信息，bdshare_firsttime是bdshare的？__utm[a-z]不知道有多少种，貌似是google的统计信息貌似，这几个好弄，都是外部的。<br />
+接下来是pnm_cku822，这个不知道干什么的，但是这个的出现条件很阴险。本来以为也是外部的，然后发现有时候服务器会加一段js用来生成这个……时有时无，出现规律未知，然后怀疑了一阵，看了一阵代码，想搞清楚是怎么生成的自己写进去好了，之后又发现isg这个cookie也是js生成的。。。而且每刷新一次网页都必定会进cookie，而且每次不一样，我就怀疑更可能是这个搞的鬼。最后把pnm_cku822删掉之后用浏览器签到成功了就排除掉pnm那个cookie专心搞isp了。<br />
+这个生成isp的js不是嵌在登录界面的网页里的，而是登录界面有个js，这个js去加载生成这个cookie的js...
+然后js还写的特别恶心，一行不带换行的。实在不想看了就想着每次都运行一遍这个脚本吧，于是开始找pyv8，这又是一个坑。。。
+</p>
+<p>
+直接
+<pre class="prettyprint">
+pip install pyv8
+</pre>
+每次都失败，因为缺v8的头文件，于是到google那里找，然后他要你装这个装那个的。大家都知道国内上google的东西那都是rere我还只有一个socks5的代理喷血，于是半天弄不好，找了半天锵锵锵锵，git可以这么代理
+<pre class="prettyprint">
+git config --global https.proxy 'socks5://localhost:8080'
+</pre>
+还有一个svn的东西，也要代理，实在无力了就跳步做，发现能行orz<br />
+于是就拉了v8的仓库
+<pre>
+Cloning into 'v8'...
+remote: Sending approximately 78.55 MiB ...
+remote: Counting objects: 30437, done
+remote: Finding sources: 100% (189487/189487)
+Receiving objects:  89% (168883/189487), 140.08 MiB | 139.00 KiB/s     
+</pre>
+最后被我不小心Ctrl-C了。。。。。<br />
+还好可以
+<pre class="prettyprint">
+git clone  https://chromium.googlesource.com/v8/v8.git --single-branch --depth 2
+</pre>
+如果只关心最新的代码，也不想push也不想啥的，上面的命令就够了，这个比下zipball好的地方是可以保持更新。但是我写文的现在也没装成功因为我有了新方法。</p>
+
+<p>
+新方法就是删了cookie看看能不能签到成功，试了几下（都是不成功的安心~），最后锁定到了一直忽视的t_sign_auth这个cookie，喷...<br />
+这个是记录签到了多少天的，然后很奇怪的是这个虽然会下到浏览器里但是用Requests就拿不到....于是手动加上去，而且要和服务器上的一致。<br />
+于是又是2次，一次不带t_sign_auth，能拿到天数，不是在cookie里，在返回的消息体里。再一次就成功签到。
+</p>
