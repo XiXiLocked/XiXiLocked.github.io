@@ -1,0 +1,14 @@
+---
+  layout: minimal
+  title:  一个ProtoBuf的小玩意
+  comment: true
+---
+<p>
+<a href="/files/pk.tar.gz">东西在这里</a>
+一个把list转成ProtoBuf的Message的小玩意，不支持optional，没有enum，什么都没有。
+只有常规类型/message类型 和required/repeated的组合是测试过的。
+</p>
+<p>
+格式也不是我定的，总之就是message []起来，repeated []起来，一点也不直观。不过跑一下代码里的例子大概就能懂的，用的是官方python tutorial的proto文件。
+</p>
+<p>要说为啥做这个，因为觉得别人效率低。</p>
