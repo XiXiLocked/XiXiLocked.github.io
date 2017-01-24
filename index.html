@@ -3,17 +3,24 @@
 ---
   <p>最新文章</p>
 
+
     <ul>
-{% for post in site.posts %}
+{% for post in paginator.posts %}
   <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
     </ul>
 <hr />
   <p>未解决的问题</p>
 <ol>
-{% for post in site.posts %} 
-{% if post.unsolved %}
+{% assign unsolvedposts = (site.posts | where:"unsolved","true")%}
+{% for post in unsolvedposts %}
         <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-{% endif %}
 {% endfor %}
 </ol>
+
+{% if paginator.previous_page_path %}
+<a href="{{  site.baseurl }} {{ paginator.previous_page_path}}">上一页</a>
+{% endif %}
+{% if paginator.next_page_path %}
+<a href="{{  site.baseurl }} {{ paginator.next_page_path}}">下一页</a>
+{% endif %}

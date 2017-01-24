@@ -38,3 +38,4 @@ Icon
 _site/
 Gemfile
 Gemfile.lock
+.jekyll-metadata

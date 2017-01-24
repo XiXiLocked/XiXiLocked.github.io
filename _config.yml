@@ -3,3 +3,6 @@ lsi: false
 source: .
 baseurl: ''
 markdown: kramdown
+gems: [jekyll-paginate]
+paginate: 10
+paginate_path: "page:num"
