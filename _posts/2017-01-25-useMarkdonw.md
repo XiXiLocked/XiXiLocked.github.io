@@ -3,8 +3,9 @@ layout: minimal
 title: 试试看用markdown
 ---
 
-现在好像什么都是这个样子的，有一份源文件，然后根据源文件生成一份实际的结果。
-于是从[这里][cheatsheet]看来了一下常用的记号，这里二手记录一下我觉得有用的。
+现在好像什么都是这个样子的，有一份源文件，然后根据源文件生成一份实际的结果
+于是从[这里][cheatsheet]看来了一下常用的记号，这里二手记录一下我觉得有用的。  
+~~上传之后发现和github的markdown有不兼容，去找了github的说明发现[看github给的例子本身][githubmarkdown]就很好懂。~~
 ### 链接和图片
 这段都算链接相关的。基本的有两种写法，一是*Inline-style*的，一是*Reference-style*的。  
 大概格式都是一样的，只是带**!**的是图片，不带的是普通链接。  
@@ -62,18 +63,19 @@ function foo() {}
 >引用的文本
 
 
-### 标题和字体风格
+### 标题，粗体，斜体，删除线
 标题取H1~H6是在前面打对应个的`#`。  
 
 ```markdown
+
 # H1  
 ## H2  
 ### H3  
 #### H4  
 ##### H5  
 ###### H6  
-```
 
+```
 >
 # H1  
 ## H2  
@@ -81,8 +83,6 @@ function foo() {}
 #### H4  
 ##### H5  
 ###### H6  
-
-粗体，斜体，删除线
 
 ```markdown
 _斜体_ *斜体*  
@@ -146,3 +146,4 @@ asterisk *
 
 [cheatsheet]: https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet
 [highlightjs]: https://highlightjs.org/static/demo/
+[githubmarkdown]: https://guides.github.com/features/mastering-markdown/
